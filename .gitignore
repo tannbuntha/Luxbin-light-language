@@ -83,3 +83,4 @@ quantum_light_show.json
 
 # Logs
 *.log
+.vercel
