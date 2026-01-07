@@ -223,7 +223,7 @@ export function LuxbinMultiWaveTranslator() {
         }
       }
     });
-  }, []);
+  }, [inputText, currentMode, textToBinary, binaryToLuxbin, luxbinToWaves]);
 
   // Stop audio
   const stopAudio = useCallback(() => {
