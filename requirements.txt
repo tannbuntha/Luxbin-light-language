@@ -1,21 +1,11 @@
-# LUXBIN Light Language Requirements
-#
-# Core dependencies for the LUXBIN light language converter
-# Install with: pip install -r requirements.txt
+# LUXBIN Light Language - Python Dependencies
 
-# No external dependencies required for basic functionality
-# This is a pure Python implementation
+# Quantum Computing
+qiskit>=0.45.0
+qiskit-ibm-runtime>=0.15.0
+qiskit-aer>=0.13.0
+pyqpanda>=3.8.0
 
-# API Server dependencies
-fastapi>=0.104.0
-uvicorn[standard]>=0.24.0
-pydantic>=2.5.0
-
-# Optional: For advanced color science (future enhancement)
-# color-science>=0.4.0
-# colour>=0.1.5
-
-# Development dependencies (see requirements-dev.txt)
-# pytest>=7.0.0
-# black>=22.0.0
-# flake8>=4.0.0
+# Scientific Computing
+numpy>=1.24.0
+matplotlib>=3.7.0
