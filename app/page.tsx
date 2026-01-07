@@ -1,6 +1,6 @@
 "use client";
 
-import { LuxbinMultiWaveTranslator } from '@/components/LuxbinMultiWaveTranslator';
+import { LuxbinMultiWaveTranslator } from '../components/LuxbinMultiWaveTranslator';
 
 export default function Home() {
   return (
