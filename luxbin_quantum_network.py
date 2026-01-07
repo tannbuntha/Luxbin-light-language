@@ -271,8 +271,8 @@ async def main():
             if node.status == 'online':
                 print(f"    [{node.config['name']}]", end="")
         print("\n")
-        print(f"     {network.nodes['ibm']['location'] if 'ibm' in network.nodes else ''}           "
-              f"{network.nodes['origin']['location'] if 'origin' in network.nodes else ''}")
+        print(f"     {network.nodes['ibm'].config['location'] if 'ibm' in network.nodes else ''}           "
+              f"{network.nodes['origin'].config['location'] if 'origin' in network.nodes else ''}")
         print("\n✨ Message successfully transmitted via quantum light!")
 
         # Save results
