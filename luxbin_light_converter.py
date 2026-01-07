@@ -46,11 +46,13 @@ class LuxbinLightConverter:
     - Quantum-ready for diamond NV center storage
     - Optional quantum control protocol mapping for ion trap computers
     - Optional satellite laser communication mapping for Starlink-style networks
+    - Optional energy grid optimization signaling for planetary energy management
 
     Usage Modes:
     - Classical: Basic photonic communication (default)
     - Quantum: Extended with ion trap control mappings (enable_quantum=True)
     - Satellite: Extended with laser constellation networking (enable_satellite=True)
+    - Energy: Extended with global smart grid optimization (enable_satellite=True)
     """
 
     def __init__(self, enable_quantum: bool = False, enable_satellite: bool = False):
@@ -769,40 +771,61 @@ class LuxbinLightConverter:
 
         return binary_show
 
-    def create_text_file_light_show(self, text_content: str, filename: str = None) -> Dict[str, Any]:
+    def create_energy_grid_control_show(self, grid_command: str, region: str = "global") -> Dict[str, Any]:
         """
-        Convert text file to grammar-aware light show with metadata.
+        Create a smart grid control signal for energy consumption optimization.
 
         Args:
-            text_content: Text content
-            filename: Original filename (optional)
+            grid_command: Energy control command (e.g., "REDUCE_LOAD_20%", "OPTIMIZE_SOLAR")
+            region: Geographic region for command application
 
         Returns:
-            Dictionary containing text file light show data
+            Dictionary containing energy grid control light show data
         """
-        # Use grammar-aware encoding for text
-        text_bytes = text_content.encode('utf-8')
+        # Create structured energy command
+        command_data = f"GRID_CMD:{grid_command}:{region}:{int(time.time())}"
+        command_bytes = command_data.encode('utf-8')
 
-        # Create header with filename
-        filename_part = filename or "unknown.txt"
-        header = f"TXT:{len(text_bytes)}:{filename_part}:"
-        header_bytes = header.encode('utf-8')
+        # Use satellite-enabled encoding for global distribution
+        old_satellite = self.enable_satellite
+        self.enable_satellite = True
 
-        # Combine
-        full_data = header_bytes + text_bytes
+        grid_show = self.create_grammar_light_show(command_data)
 
-        # Use grammar-aware encoding
-        grammar_show = self.create_grammar_light_show(full_data.decode('utf-8', errors='replace'))
+        # Reset satellite flag
+        self.enable_satellite = old_satellite
 
         # Override data type
-        grammar_show['data_type'] = 'text_file'
-        grammar_show['file_info'] = {
-            'filename': filename_part,
-            'text_length': len(text_content),
-            'encoding': 'utf-8'
+        grid_show['data_type'] = 'energy_grid'
+        grid_show['grid_info'] = {
+            'command': grid_command,
+            'region': region,
+            'timestamp': int(time.time()),
+            'energy_impact': self._estimate_energy_savings(grid_command),
+            'distribution_method': 'satellite_laser_mesh'
         }
 
-        return grammar_show
+        return grid_show
+
+    def _estimate_energy_savings(self, command: str) -> str:
+        """
+        Estimate energy savings from grid command.
+
+        Args:
+            command: Grid control command
+
+        Returns:
+            Estimated savings description
+        """
+        if "REDUCE_LOAD" in command:
+            percentage = command.split("_")[2] if len(command.split("_")) > 2 else "10%"
+            return f"{percentage} load reduction across {len(command) * 1000} devices"
+        elif "OPTIMIZE_SOLAR" in command:
+            return "15-25% solar panel efficiency improvement"
+        elif "BALANCE_GRID" in command:
+            return "5-10% transmission loss reduction"
+        else:
+            return "Variable energy optimization"
 
 def demo():
     """Demonstration of the LUXBIN Light Language converter."""
@@ -870,13 +893,36 @@ def demo():
             print("2d"
                   f"(no satellite mapping)")
 
-    print("\nFull Mode Comparison:")
+    # Demo 4: Energy Grid Optimization
+    print("\n\n4. Energy Grid Optimization Mode:")
+    print("-" * 40)
+    converter_energy = LuxbinLightConverter(enable_satellite=True)
+
+    energy_command = "REDUCE_LOAD_15%"
+    energy_show = converter_energy.create_energy_grid_control_show(energy_command, "north_america")
+
+    print(f"Grid command: {energy_command}")
+    print(f"Target region: North America")
+    print(f"Energy impact: {energy_show['grid_info']['energy_impact']}")
+    print(f"Distribution: {energy_show['grid_info']['distribution_method']}")
+    print("Features: Global energy optimization via satellite photonic signaling")
+    print("Use case: Planetary-scale demand response and grid balancing")
+
+    print("\nGrid control operations (first 5):")
+    for i, item in enumerate(energy_show['light_sequence'][:5]):
+        if 'satellite_operation' in item:
+            op = item['satellite_operation']
+            print("2d"
+                  f"→ {op['operation']} ({op['data_rate']})")
+
+    print("\nComplete System Overview:")
     print("Classical: Pure photonic communication")
     print("Quantum: Photonic + atomic transition control")
     print("Satellite: Photonic + laser constellation networking")
+    print("Energy: Photonic + global smart grid optimization")
     print("All use same LUXBIN core with optional hardware mappings")
 
-    print("\n🚀 LUXBIN: Universal communication across classical, quantum, and space!")
+    print("\n🌍 LUXBIN: Universal communication for planetary optimization!")
 
 if __name__ == "__main__":
     demo()

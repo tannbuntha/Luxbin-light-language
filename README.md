@@ -124,6 +124,12 @@ LUXBIN supports classical, quantum, and satellite computing paradigms in a singl
 - Wavelengths map to inter-satellite links (1550nm infrared lasers)
 - Enables global photonic internet infrastructure
 
+**Energy Mode** (`enable_satellite=True`):
+- Extended with planetary energy grid optimization
+- Smart grid control signals via satellite laser mesh
+- Demand response coordination for energy conservation
+- Real-time grid balancing and efficiency optimization
+
 ---
 
 ## 📊 Technical Details
