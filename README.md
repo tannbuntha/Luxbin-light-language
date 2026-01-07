@@ -2,15 +2,21 @@
 
 **Universal photonic communication protocol for computers using color light wavelengths**
 
-[![Universal](https://img.shields.io/badge/Universal-All%20Computers-7C3AED?style=for-the-badge&logo=computer&logoColor=white)](https://github.com/mermaidnicheboutique-code/luxbin-light-language) [![Quantum Ready](https://img.shields.io/badge/Quantum-Diamond%20NV%20Centers-22C55E?style=for-the-badge&logo=diamond&logoColor=white)](https://github.com/mermaidnicheboutique-code/luxbin-light-language) [![Photonic](https://img.shields.io/badge/Photonic-Encoding-00D4AA?style=for-the-badge&logo=light&logoColor=white)](https://github.com/mermaidnicheboutique-code/luxbin-light-language)
+*Developed by Nicheai - Pioneering Sustainable Computing Infrastructure*
+
+[![Universal](https://img.shields.io/badge/Universal-All%20Computers-7C3AED?style=for-the-badge&logo=computer&logoColor=white)](https://github.com/nicheai/luxbin-light-language) [![Quantum Ready](https://img.shields.io/badge/Quantum-Diamond%20NV%20Centers-22C55E?style=for-the-badge&logo=diamond&logoColor=white)](https://github.com/nicheai/luxbin-light-language) [![Photonic](https://img.shields.io/badge/Photonic-Encoding-00D4AA?style=for-the-badge&logo=light&logoColor=white)](https://github.com/nicheai/luxbin-light-language) [![Nicheai](https://img.shields.io/badge/By-Nicheai-FF6B35?style=for-the-badge&logo=company&logoColor=white)](https://nicheai.com)
 
 ---
 
 ## 🎯 Vision
 
+**Nicheai** presents LUXBIN Light Language - a revolutionary photonic communication protocol that transforms computing infrastructure for planetary sustainability.
+
 The LUXBIN Light Language enables **universal computer communication** through photonic encoding, converting binary data into sequences of colored light wavelengths. This creates a "light show" that any computer can interpret, with special optimization for quantum computers using diamond nitrogen-vacancy (NV) centers for data storage.
 
 **Flow**: Binary Code → LUXBIN Photonic Encoding → Color Light Show → Universal Communication
+
+**Company Mission**: Nicheai is dedicated to developing sustainable computing technologies that reduce global energy consumption while advancing computational capabilities through photonic and quantum innovations.
 
 ---
 
@@ -360,6 +366,33 @@ Binary light sequence:
 
 ---
 
+## 🏢 About Nicheai
+
+**Nicheai** is a pioneering technology company focused on sustainable computing infrastructure and planetary energy optimization.
+
+### Our Mission
+- Develop photonic computing technologies that reduce global energy consumption by 90%+
+- Create quantum-ready communication protocols for next-generation networks
+- Build planetary-scale infrastructure for sustainable technological civilization
+- Advance AI and computing capabilities while minimizing environmental impact
+
+### Technology Focus
+- **LUXBIN Light Language**: Universal photonic communication protocol
+- **Temporal Cryptography**: Time-based security for quantum systems
+- **Sustainable Computing**: Energy-efficient alternatives to traditional silicon
+- **Global Grid Infrastructure**: Smart energy and communication networks
+
+### Contact Information
+- **Website**: https://nicheai.com
+- **Email**: contact@nicheai.com
+- **GitHub Organization**: [@nicheai](https://github.com/nicheai)
+- **LinkedIn**: [Nicheai Official](https://linkedin.com/company/nicheai)
+
+### Career Opportunities
+Nicheai is actively hiring talented engineers, physicists, and researchers to help build the future of sustainable computing. Join us in revolutionizing technology for planetary benefit!
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions! Areas of interest:
@@ -402,17 +435,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **LUXBIN Team**: For the original photonic encoding concept
-- **Quantum Research Community**: For NV center advancements
+- **Nichole Christie**: Founder and lead developer of LUXBIN technologies
+- **Nicheai Team**: For advancing sustainable computing research
+- **Quantum Research Community**: For NV center and ion trap advancements
 - **Photonic Computing Pioneers**: For optical data transmission innovations
+- **Open Source Community**: For collaborative development and feedback
+
+**Made with ❤️ by Nicheai for a sustainable, energy-efficient computing future** 🌈⚡
 
 ---
 
-**Made with ❤️ for a brighter, more colorful computing future** 🌈
-
----
-
-*Note: This is a research prototype. Production implementations should include proper error correction, synchronization, and quantum error mitigation.*</content>
+*Note: This is a research prototype developed by Nicheai. Production implementations should include proper error correction, synchronization, and quantum error mitigation. For commercial deployment or enterprise licensing, please contact Nicheai directly.*
 </xai:function_call">  
 <xai:function_call name="update_todo_list">
 <parameter name="updates">[{"id":"write_readme","status":"completed","content":"Created comprehensive README.md with concept explanation, usage examples, quantum integration details, and API reference"}]

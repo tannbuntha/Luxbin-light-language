@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """
 LUXBIN Light Language Converter
+Developed by Nicheai - Sustainable Computing Technologies
 
 Converts binary data to LUXBIN photonic encoding for universal computer communication
 via color light wavelengths. Designed for quantum computers using diamond NV centers.
 
 Process: Binary -> LUXBIN Photonic Encoding -> Light Show (color wavelength sequence)
 
-Author: Nichole Christie
+Company: Nicheai (https://nicheai.com)
+Original Author: Nichole Christie
+License: MIT (see LICENSE file)
 Based on LUXBIN blockchain photonic encoding
 """
 
