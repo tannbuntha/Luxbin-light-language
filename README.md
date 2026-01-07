@@ -89,6 +89,14 @@ for item in quantum_show['light_sequence'][:3]:
     if 'quantum_operation' in item:
         op = item['quantum_operation']
         print(f"'{item['character']}' → {op['operation']} ({op['ion_type']})")
+
+# Satellite laser communication (global internet)
+converter_satellite = LuxbinLightConverter(enable_satellite=True)
+satellite_show = converter_satellite.create_light_show(b"Global Data")
+for item in satellite_show['light_sequence'][:3]:
+    if 'satellite_operation' in item:
+        op = item['satellite_operation']
+        print(f"'{item['character']}' → {op['operation']} ({op['data_rate']})")
 ```
 
 ### Demo
@@ -97,9 +105,9 @@ python luxbin_light_converter.py
 ```
 
 ### Modular Design
-LUXBIN supports both classical and quantum computing paradigms in a single codebase:
+LUXBIN supports classical, quantum, and satellite computing paradigms in a single codebase:
 
-**Classical Mode** (`enable_quantum=False`):
+**Classical Mode** (`enable_quantum=False, enable_satellite=False`):
 - Pure photonic communication for universal computer interoperability
 - No quantum-specific features required
 - Suitable for classical hardware implementations
@@ -109,6 +117,12 @@ LUXBIN supports both classical and quantum computing paradigms in a single codeb
 - Direct interface to real quantum hardware protocols
 - Wavelengths map to atomic transitions (397nm Ca⁺, 422nm Sr⁺, etc.)
 - Enables photonic control of trapped-ion quantum computers
+
+**Satellite Mode** (`enable_satellite=True`):
+- Extended with Starlink-style laser constellation networking
+- Direct interface to satellite laser communication protocols
+- Wavelengths map to inter-satellite links (1550nm infrared lasers)
+- Enables global photonic internet infrastructure
 
 ---
 

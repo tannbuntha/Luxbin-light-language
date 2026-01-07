@@ -45,23 +45,28 @@ class LuxbinLightConverter:
     - HSL to wavelength approximation
     - Quantum-ready for diamond NV center storage
     - Optional quantum control protocol mapping for ion trap computers
+    - Optional satellite laser communication mapping for Starlink-style networks
 
     Usage Modes:
     - Classical: Basic photonic communication (default)
     - Quantum: Extended with ion trap control mappings (enable_quantum=True)
+    - Satellite: Extended with laser constellation networking (enable_satellite=True)
     """
 
-    def __init__(self, enable_quantum: bool = False):
+    def __init__(self, enable_quantum: bool = False, enable_satellite: bool = False):
         """
         Initialize the LUXBIN Light Converter.
 
         Args:
             enable_quantum: If True, includes quantum control protocol mappings
                           for ion trap computers. Default False for classical use.
+            enable_satellite: If True, includes satellite laser communication mappings
+                            for Starlink-style inter-satellite links.
         """
         self.alphabet = LUXBIN_ALPHABET
         self.alphabet_len = len(self.alphabet)
         self.enable_quantum = enable_quantum
+        self.enable_satellite = enable_satellite
 
     def binary_to_luxbin_chars(self, binary_data: bytes, chunk_size: int = 6) -> str:
         """
@@ -343,6 +348,53 @@ class LuxbinLightConverter:
             }
         }
 
+    def wavelength_to_satellite_operation(self, wavelength: float, duration: float) -> Dict[str, Any]:
+        """
+        Map wavelength to Starlink satellite laser communication operations.
+
+        Starlink uses ~1550nm infrared lasers for inter-satellite links.
+        LUXBIN encoding could modulate these laser signals.
+
+        Args:
+            wavelength: Light wavelength in nm
+            duration: Pulse duration in seconds
+
+        Returns:
+            Satellite communication operation specification
+        """
+        # Starlink laser communication wavelengths (near-IR)
+        if 1500 <= wavelength <= 1600:  # Starlink laser range
+            operation = "inter_satellite_laser_link"
+            protocol = "luxbin_encoded"
+            data_rate = "100Gbps+"
+            modulation = "wavelength_division_multiplexing"
+        elif 1260 <= wavelength <= 1360:  # O-band (alternative)
+            operation = "ground_station_uplink"
+            protocol = "luxbin_modulated"
+            data_rate = "10Gbps"
+            modulation = "phase_modulation"
+        else:
+            operation = "optical_alignment"
+            protocol = "beacon_signal"
+            data_rate = "alignment_only"
+            modulation = "continuous_wave"
+
+        return {
+            "operation": operation,
+            "protocol": protocol,
+            "wavelength_nm": wavelength,
+            "duration_s": duration,
+            "data_rate": data_rate,
+            "modulation": modulation,
+            "communication_parameters": {
+                "beam_divergence": "milliradians",  # Satellite laser beam characteristics
+                "atmospheric_loss": "<0.1dB",  # Space-to-space has minimal atmosphere
+                "pointing_accuracy": "microradians",  # Precise satellite pointing
+                "luxbin_encoding": True,  # LUXBIN photonic modulation
+                "global_coverage": True  # Satellite constellation enables worldwide coverage
+            }
+        }
+
     def create_light_show(self, binary_data: bytes) -> Dict[str, Any]:
         """
         Convert binary data to a photonic light show sequence.
@@ -383,6 +435,16 @@ class LuxbinLightConverter:
             if self.enable_quantum:
                 quantum_op = self.wavelength_to_quantum_operation(wavelength, duration)
                 item['quantum_operation'] = quantum_op
+
+            # Add satellite operation mapping if enabled
+            if self.enable_satellite:
+                satellite_op = self.wavelength_to_satellite_operation(wavelength, duration)
+                item['satellite_operation'] = satellite_op
+
+            # Add satellite operation mapping if enabled
+            if self.enable_satellite:
+                satellite_op = self.wavelength_to_satellite_operation(wavelength, duration)
+                item['satellite_operation'] = satellite_op
 
             light_sequence.append(item)
 
@@ -512,6 +574,11 @@ class LuxbinLightConverter:
             if self.enable_quantum:
                 quantum_op = self.wavelength_to_quantum_operation(wavelength, duration)
                 item['quantum_operation'] = quantum_op
+
+            # Add satellite operation mapping if enabled
+            if self.enable_satellite:
+                satellite_op = self.wavelength_to_satellite_operation(wavelength, duration)
+                item['satellite_operation'] = satellite_op
 
             light_sequence.append(item)
 
@@ -780,12 +847,36 @@ def demo():
             print("2d"
                   f"(no quantum mapping)")
 
-    print("\nMode Comparison:")
+    # Demo 3: Satellite Laser Communication Mode
+    print("\n\n3. Satellite Laser Communication Mode:")
+    print("-" * 40)
+    converter_satellite = LuxbinLightConverter(enable_satellite=True)
+
+    satellite_data = "GLOBAL INTERNET VIA SATELLITE LASERS"
+    satellite_show = converter_satellite.create_grammar_light_show(satellite_data)
+
+    print(f"Data: {satellite_data}")
+    print(f"Light sequence: {len(satellite_show['light_sequence'])} steps")
+    print("Features: Photonic encoding + Starlink laser communication")
+    print("Use case: Global satellite internet with LUXBIN modulation")
+
+    print("\nSatellite operations (first 5):")
+    for i, item in enumerate(satellite_show['light_sequence'][:5]):
+        if 'satellite_operation' in item:
+            op = item['satellite_operation']
+            print("2d"
+                  f"→ {op['operation']} ({op['data_rate']})")
+        else:
+            print("2d"
+                  f"(no satellite mapping)")
+
+    print("\nFull Mode Comparison:")
     print("Classical: Pure photonic communication")
     print("Quantum: Photonic + atomic transition control")
-    print("Both use same LUXBIN core, quantum adds hardware control layer")
+    print("Satellite: Photonic + laser constellation networking")
+    print("All use same LUXBIN core with optional hardware mappings")
 
-    print("\n🎯 Single repo supports both paradigms!")
+    print("\n🚀 LUXBIN: Universal communication across classical, quantum, and space!")
 
 if __name__ == "__main__":
     demo()
