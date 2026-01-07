@@ -300,7 +300,7 @@ export function LuxbinMultiWaveTranslator() {
 
     try {
       // Call the Light Language API
-      const response = await fetch('/api/v1/translate', {
+      const response = await fetch('/api/v1/translate/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
