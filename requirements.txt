@@ -1,11 +1,13 @@
 # LUXBIN Light Language - Python Dependencies
 
-# Quantum Computing
+# Quantum Computing (Core - Works on macOS)
 qiskit>=0.45.0
 qiskit-ibm-runtime>=0.15.0
 qiskit-aer>=0.13.0
-pyqpanda>=3.8.0
 
 # Scientific Computing
 numpy>=1.24.0
 matplotlib>=3.7.0
+
+# Optional: Origin Quantum (Linux/Windows only, not macOS)
+# pyqpanda>=3.8.0  # Use Google Colab or Linux for Chinese quantum computers
