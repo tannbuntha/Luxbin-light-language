@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LUXBIN Network Monitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0e27;
+      color: white;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .last-update {
+      text-align: center;
+      opacity: 0.7;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s;
+    }
+
+    .metric-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .metric-label {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+
+    .metric-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .metric-value.success {
+      color: #00ff00;
+    }
+
+    .metric-value.warning {
+      color: #ffaa00;
+    }
+
+    .metric-value.danger {
+      color: #ff0000;
+    }
+
+    .nodes-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .node-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .node-card.healthy {
+      border-left: 4px solid #00ff00;
+    }
+
+    .node-card.unhealthy {
+      border-left: 4px solid #ff0000;
+    }
+
+    .node-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .node-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .node-status {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .node-status.healthy {
+      background: #00ff00;
+    }
+
+    .node-status.unhealthy {
+      background: #ff0000;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .node-info {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 5px;
+    }
+
+    .chart-container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 40px;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    #peerChart {
+      width: 100%;
+      height: 300px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 60px;
+      font-size: 18px;
+      opacity: 0.7;
+    }
+
+    .error {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>LUXBIN Network Monitor</h1>
+    <p>Real-time Quantum Internet Status</p>
+  </div>
+
+  <div class="last-update" id="lastUpdate">
+    Loading...
+  </div>
+
+  <div class="metrics-grid" id="metricsGrid">
+    <div class="loading">Loading network metrics...</div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Network Peers (Last 30 Data Points)</div>
+    <canvas id="peerChart"></canvas>
+  </div>
+
+  <div class="nodes-section">
+    <div class="section-title">Bootstrap Nodes</div>
+    <div class="nodes-grid" id="nodesGrid">
+      <div class="loading">Loading node information...</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>LUXBIN Quantum Photonic Internet</p>
+    <p>Network Monitor v1.0 | Created by Nichole Christie, 2026</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    let peerChart = null;
+
+    // Fetch and display metrics
+    async function updateMetrics() {
+      try {
+        const response = await fetch('/api/metrics');
+        const data = await response.json();
+
+        if (!data.success) {
+          throw new Error('Failed to fetch metrics');
+        }
+
+        const metrics = data.metrics;
+        const status = data.network_status;
+
+        // Update last update time
+        document.getElementById('lastUpdate').textContent =
+          `Last updated: ${status.last_update || 'Never'}`;
+
+        // Update metrics grid
+        const metricsHtml = `
+          <div class="metric-card">
+            <div class="metric-label">Bootstrap Nodes</div>
+            <div class="metric-value ${getHealthColor(metrics.bootstrap_nodes)}">
+              ${metrics.bootstrap_nodes?.healthy || 0}/${metrics.bootstrap_nodes?.total || 0}
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Total Peers</div>
+            <div class="metric-value">
+              ${metrics.network?.total_peers || 0}
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Network Content</div>
+            <div class="metric-value">
+              ${metrics.network?.total_content || 0}
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Blockchain Height</div>
+            <div class="metric-value">
+              ${metrics.network?.blockchain_height || 0}
+            </div>
+          </div>
+        `;
+
+        document.getElementById('metricsGrid').innerHTML = metricsHtml;
+
+        // Update nodes
+        updateNodes(metrics.nodes || []);
+
+        // Update chart
+        updateChart();
+
+      } catch (error) {
+        console.error('Error fetching metrics:', error);
+        document.getElementById('metricsGrid').innerHTML =
+          '<div class="error">Failed to load network metrics. Check bootstrap nodes.</div>';
+      }
+    }
+
+    function getHealthColor(bootstrap) {
+      if (!bootstrap) return '';
+      const ratio = bootstrap.healthy / bootstrap.total;
+      if (ratio === 1) return 'success';
+      if (ratio > 0.5) return 'warning';
+      return 'danger';
+    }
+
+    // Update nodes display
+    function updateNodes(nodes) {
+      const nodesHtml = nodes.map(node => `
+        <div class="node-card ${node.healthy ? 'healthy' : 'unhealthy'}">
+          <div class="node-header">
+            <div class="node-name">${node.node}</div>
+            <div class="node-status ${node.healthy ? 'healthy' : 'unhealthy'}"></div>
+          </div>
+          <div class="node-info">📍 Region: ${node.region}</div>
+          <div class="node-info">🔗 Peers: ${node.peers}</div>
+          <div class="node-info">⏱️ Uptime: ${node.uptime_hours}h</div>
+          <div class="node-info">📊 Requests: ${node.requests_handled}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('nodesGrid').innerHTML = nodesHtml ||
+        '<div class="loading">No nodes available</div>';
+    }
+
+    // Update chart
+    async function updateChart() {
+      try {
+        const response = await fetch('/api/history?limit=30');
+        const data = await response.json();
+
+        if (!data.success) return;
+
+        const history = data.history;
+
+        const labels = history.map((_, i) => `${i + 1}`);
+        const peerData = history.map(h => h.network?.total_peers || 0);
+
+        const ctx = document.getElementById('peerChart').getContext('2d');
+
+        if (peerChart) {
+          peerChart.destroy();
+        }
+
+        peerChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Total Peers',
+              data: peerData,
+              borderColor: '#667eea',
+              backgroundColor: 'rgba(102, 126, 234, 0.1)',
+              tension: 0.4,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                labels: {
+                  color: 'white'
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  color: 'white'
+                },
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }
+              },
+              x: {
+                ticks: {
+                  color: 'white'
+                },
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }
+              }
+            }
+          }
+        });
+
+      } catch (error) {
+        console.error('Error updating chart:', error);
+      }
+    }
+
+    // Initialize
+    updateMetrics();
+
+    // Auto-refresh every 30 seconds
+    setInterval(updateMetrics, 30000);
+  </script>
+</body>
+</html>

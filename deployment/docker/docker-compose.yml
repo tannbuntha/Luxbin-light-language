@@ -1,0 +1,87 @@
+# LUXBIN Network Production Deployment
+
+version: '3.8'
+
+services:
+  # Bootstrap Node 1 (US East)
+  bootstrap-us-east:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile.bootstrap
+    container_name: luxbin-bootstrap-us-east
+    environment:
+      - NODE_NAME=bootstrap-us-east-1
+      - REGION=us-east
+      - PORT=8080
+      - IONQ_API_KEY=${IONQ_API_KEY}
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+
+  # Bootstrap Node 2 (EU West)
+  bootstrap-eu-west:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile.bootstrap
+    container_name: luxbin-bootstrap-eu-west
+    environment:
+      - NODE_NAME=bootstrap-eu-west-1
+      - REGION=eu-west
+      - PORT=8080
+      - IONQ_API_KEY=${IONQ_API_KEY}
+    ports:
+      - "8081:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+
+  # Bootstrap Node 3 (Asia Pacific)
+  bootstrap-asia-pacific:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile.bootstrap
+    container_name: luxbin-bootstrap-asia-pacific
+    environment:
+      - NODE_NAME=bootstrap-asia-pacific-1
+      - REGION=asia-pacific
+      - PORT=8080
+      - IONQ_API_KEY=${IONQ_API_KEY}
+    ports:
+      - "8082:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+
+  # Network Monitor
+  network-monitor:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile.monitor
+    container_name: luxbin-network-monitor
+    environment:
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - bootstrap-us-east
+      - bootstrap-eu-west
+      - bootstrap-asia-pacific
+    restart: unless-stopped
+
+networks:
+  default:
+    name: luxbin-network

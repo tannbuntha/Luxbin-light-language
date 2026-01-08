@@ -1,0 +1,45 @@
+[Unit]
+Description=LUXBIN Bootstrap Node
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=luxbin
+Group=luxbin
+WorkingDirectory=/opt/luxbin
+Environment="IONQ_API_KEY=YOUR_KEY_HERE"
+Environment="NODE_NAME=bootstrap-1"
+Environment="REGION=us-east"
+Environment="PORT=8080"
+
+ExecStart=/usr/bin/python3 /opt/luxbin/luxbin_bootstrap_node.py \
+    --name $NODE_NAME \
+    --region $REGION \
+    --port $PORT
+
+# Restart policy
+Restart=always
+RestartSec=10s
+StartLimitBurst=5
+StartLimitIntervalSec=200s
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/luxbin/data
+
+# Resource limits
+LimitNOFILE=65536
+MemoryLimit=2G
+CPUQuota=200%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=luxbin-bootstrap
+
+[Install]
+WantedBy=multi-user.target
