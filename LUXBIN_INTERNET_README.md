@@ -1,5 +1,7 @@
 # LUXBIN Quantum Photonic Internet
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18180263.svg)](https://doi.org/10.5281/zenodo.18180263)
+
 ## Overview
 
 The LUXBIN Quantum Photonic Internet is a new internet protocol built on quantum computing and photonic communication. It provides:
