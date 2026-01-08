@@ -6,9 +6,9 @@
         "name": "ibm_fez",
         "location": "Yorktown Heights, NY",
         "qubits": 156,
-        "queue": 0,
+        "queue": 7,
         "status": "active",
-        "lastValidation": "2026-01-07T18:54:23.641330"
+        "lastValidation": "2026-01-08T11:03:36.212906"
       },
       {
         "name": "ibm_torino",
@@ -16,61 +16,32 @@
         "qubits": 133,
         "queue": 0,
         "status": "active",
-        "lastValidation": "2026-01-07T18:54:24.340639"
+        "lastValidation": "2026-01-08T11:03:36.929188"
       },
       {
         "name": "ibm_marrakesh",
         "location": "Yorktown Heights, NY",
         "qubits": 156,
-        "queue": 10656,
+        "queue": 9618,
         "status": "active",
-        "lastValidation": "2026-01-07T18:54:25.356214"
+        "lastValidation": "2026-01-08T11:03:38.383517"
       }
     ],
     "totalValidators": 3,
     "consensusThreshold": 2
   },
   "blockchain": {
-    "latestBlock": {
-      "number": 7,
-      "hash": "5e1a13a36f3e91a7a72bfbf910d496ea41402cd855f1f12f4e334302999aacb2",
-      "quantumNonce": 255,
-      "timestamp": 1767833659.558995,
-      "transactions": 1,
-      "miningBackend": "ibm_fez",
-      "jobId": "d5ffmhkpe0pc73ajv3dg",
-      "consensusVotes": {
-        "total": 3,
-        "valid": 3,
-        "validators": [
-          {
-            "backend": "ibm_fez",
-            "vote": "valid",
-            "jobId": "d5ffkrv67pic7383285g"
-          },
-          {
-            "backend": "ibm_torino",
-            "vote": "valid",
-            "jobId": "d5ffkukpe0pc73ajv1t0"
-          },
-          {
-            "backend": "ibm_marrakesh",
-            "vote": "valid",
-            "jobId": "d5ffl0vea9qs738vql8g"
-          }
-        ]
-      }
-    },
-    "totalBlocks": 7,
-    "totalTransactions": 7,
-    "pendingTransactions": 0
+    "latestBlock": null,
+    "totalBlocks": 0,
+    "totalTransactions": 0,
+    "pendingTransactions": 1
   },
   "quantum": {
     "activeJobs": 0,
-    "completedJobs": 7,
+    "completedJobs": 0,
     "totalQubitsAvailable": 445,
     "luxbinEncoding": true,
     "photomicCommunication": "active"
   },
-  "timestamp": "2026-01-07T18:54:25.358263"
+  "timestamp": "2026-01-08T11:03:38.385387"
 }
