@@ -1,0 +1,89 @@
+{
+  "gateway": {
+    "name": "LUXBIN Gaming Gateway",
+    "port": 9000,
+    "host": "0.0.0.0",
+    "cors_enabled": true,
+    "max_connections": 1000
+  },
+  "quantum": {
+    "backends": [
+      "ibm_fez",
+      "ibm_torino",
+      "ibm_marrakesh",
+      "ionq_harmony"
+    ],
+    "primary_backend": "ibm_fez",
+    "fallback_enabled": true
+  },
+  "gaming_mirrors": {
+    "niche_app": {
+      "name": "Niche App",
+      "http_url": "https://niche-app-main.vercel.app",
+      "luxbin_address": "luxbin://niche-app.500nm.HASH/",
+      "wavelength": 500,
+      "type": "social",
+      "enabled": true
+    },
+    "globalblackjack": {
+      "name": "Global Blackjack",
+      "http_url": "https://globalblackjack.vercel.app",
+      "luxbin_address": "luxbin://globalblackjack.600nm.HASH/",
+      "wavelength": 600,
+      "type": "gaming",
+      "enabled": true
+    },
+    "epic_games": {
+      "name": "Epic Games Store",
+      "http_url": "https://www.epicgames.com",
+      "luxbin_address": "luxbin://epicgames.600nm.STORE/",
+      "wavelength": 600,
+      "type": "gaming",
+      "enabled": true
+    },
+    "fortnite": {
+      "name": "Fortnite",
+      "http_url": "https://www.fortnite.com",
+      "luxbin_address": "luxbin://fortnite.600nm.GAME/",
+      "wavelength": 600,
+      "type": "gaming",
+      "enabled": true
+    },
+    "steam": {
+      "name": "Steam",
+      "http_url": "https://store.steampowered.com",
+      "luxbin_address": "luxbin://steam.600nm.PLATFORM/",
+      "wavelength": 600,
+      "type": "gaming",
+      "enabled": false
+    },
+    "roblox": {
+      "name": "Roblox",
+      "http_url": "https://www.roblox.com",
+      "luxbin_address": "luxbin://roblox.600nm.METAVERSE/",
+      "wavelength": 600,
+      "type": "gaming",
+      "enabled": false
+    }
+  },
+  "mirror_settings": {
+    "auto_sync": true,
+    "sync_interval_hours": 24,
+    "cache_ttl_seconds": 3600,
+    "max_mirror_depth": 3
+  },
+  "security": {
+    "quantum_encryption": true,
+    "bell_pair_qkd": true,
+    "post_quantum_crypto": true,
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 60
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "log_file": "gateway.log",
+    "log_quantum_ops": true
+  }
+}
